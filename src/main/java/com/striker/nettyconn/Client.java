@@ -27,6 +27,8 @@ public class Client {
         client.start();
 
         //client.sendData();
+        // ---- client /127.0.0.1:55264 reader timeOut, --- close it
+        // ---/127.0.0.1:55264----- channel is Inactive
     }
 
     private void start() {
