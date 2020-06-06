@@ -26,7 +26,7 @@ public class Client {
 
         client.start();
 
-        client.sendData();      
+        //client.sendData();
     }
 
     private void start() {
@@ -70,6 +70,7 @@ public class Client {
                 if(channelFuture.isSuccess()){
                     channel = channelFuture.channel();
                     System.out.println("客户端|连接成功");
+                    sendData();
                 }else{
                     System.out.println("每隔2s重连....");
                     channelFuture.channel().eventLoop().schedule(new Runnable() {
