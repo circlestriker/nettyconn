@@ -100,12 +100,12 @@ public abstract class Middleware extends ChannelInboundHandlerAdapter{
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         // TODO Auto-generated method stub
-        System.err.println(" ---"+ctx.channel().remoteAddress() +"----- is  action" );
+        System.err.println(" ---"+ctx.channel().remoteAddress() +"----- channel is active" );
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         // TODO Auto-generated method stub
-        System.err.println(" ---"+ctx.channel().remoteAddress() +"----- is  inAction");
+        System.err.println(" ---"+ctx.channel().remoteAddress() +"----- channel is Inactive");
     }
 }
