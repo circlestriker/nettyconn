@@ -13,6 +13,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
 
+import static java.lang.Thread.sleep;
+
 public class Client {
 
     private NioEventLoopGroup worker = new NioEventLoopGroup();
@@ -21,12 +23,12 @@ public class Client {
 
     private Bootstrap bootstrap;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Client  client = new Client();
 
         client.start();
 
-        //client.sendData();
+        client.sendData();
         // ---- client /127.0.0.1:55264 reader timeOut, --- close it
         // ---/127.0.0.1:55264----- channel is Inactive
     }
@@ -72,7 +74,7 @@ public class Client {
                 if(channelFuture.isSuccess()){
                     channel = channelFuture.channel();
                     System.out.println("客户端|连接成功");
-                    sendData();
+                    //sendData();
                 }else{
                     System.out.println("每隔2s重连....");
                     channelFuture.channel().eventLoop().schedule(new Runnable() {
@@ -90,7 +92,8 @@ public class Client {
     /**
      * 向服务端发送消息
      */
-    private void sendData() {
+    private void sendData() throws InterruptedException {
+        sleep(1000);
         Scanner sc= new Scanner(System.in); 
         for (int i = 0; i < 1000; i++) {
 
