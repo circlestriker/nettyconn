@@ -38,6 +38,7 @@ public class Client {
         bootstrap.group(worker)
         .channel(NioSocketChannel.class)
         .option(ChannelOption.TCP_NODELAY, true)
+                .option(ChannelOption.SO_KEEPALIVE, true)
         .handler(new ChannelInitializer<Channel>() {
             @Override
             protected void initChannel(Channel ch) throws Exception {
@@ -93,7 +94,7 @@ public class Client {
      * 向服务端发送消息
      */
     private void sendData() throws InterruptedException {
-        sleep(1000);
+        //sleep(1000);
         Scanner sc= new Scanner(System.in); 
         for (int i = 0; i < 1000; i++) {
 
