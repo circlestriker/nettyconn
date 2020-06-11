@@ -12,9 +12,9 @@ public class server3Handler extends Middleware {
     protected void handlerData(ChannelHandlerContext ctx, Object msg) {
 	// TODO Auto-generated method stub
 	Model model  = (Model) msg;
-	System.out.println("server 接收数据 ： " +  model.toString());   
+	System.out.println("server 接收数据 ： " +  model.toString());
 	model.setType(TypeData.CUSTOMER);
-	model.setBody("---------------");
+	model.setBody("---------------|"+model.toString());
 	ctx.channel().writeAndFlush(model);         
 	System.out.println("server 发送数据： " + model.toString()); 
     }
