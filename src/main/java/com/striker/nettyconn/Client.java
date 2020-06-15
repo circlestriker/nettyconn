@@ -31,6 +31,7 @@ public class Client {
         client.sendData();
         // ---- client /127.0.0.1:55264 reader timeOut, --- close it
         // ---/127.0.0.1:55264----- channel is Inactive
+        client.sendProtoData();
     }
 
     private void start() {
@@ -108,6 +109,29 @@ public class Client {
                 model.setBody(nextLine);
 
                 channel.writeAndFlush(model);
+            }
+        }
+    }
+
+    /**
+     * 向服务端发送消息
+     */
+    private void sendProtoData() throws InterruptedException {
+        sleep(1000);
+        Scanner sc= new Scanner(System.in);
+        for (int i = 0; i < 1000; i++) {
+            if(channel != null && channel.isActive()){
+                //1、 创建Builder
+                MessageProto.Message.Builder builder = MessageProto.Message.newBuilder();
+                //2、 设置Person的属性
+                builder.setId("id"+i);
+                builder.setType(0);
+                builder.setContent("hello|"+i);
+                //3、 创建
+                MessageProto.Message message = builder.build();
+                //4、序列化
+                //5、将data保存在本地或者是传到网络
+                channel.writeAndFlush(message);
             }
         }
     }
