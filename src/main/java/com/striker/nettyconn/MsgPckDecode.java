@@ -7,7 +7,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
 
 /**
- * 解码器
+ * 解码器: 从网络输入时(inbound)decode
  * @author Administrator
  *
  */
