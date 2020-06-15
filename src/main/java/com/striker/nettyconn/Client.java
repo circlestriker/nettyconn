@@ -75,7 +75,7 @@ public class Client {
                 if(channelFuture.isSuccess()){
                     channel = channelFuture.channel();
                     System.out.println("客户端|连接成功");
-                    //sendData();
+                    //sendData(); //这里发为什么会导致连接中断?
                 }else{
                     System.out.println("每隔2s重连....");
                     channelFuture.channel().eventLoop().schedule(new Runnable() {
@@ -94,7 +94,7 @@ public class Client {
      * 向服务端发送消息
      */
     private void sendData() throws InterruptedException {
-        //sleep(1000);
+        sleep(1000);
         Scanner sc= new Scanner(System.in); 
         for (int i = 0; i < 1000; i++) {
 

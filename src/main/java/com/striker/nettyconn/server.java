@@ -1,11 +1,7 @@
 package com.striker.nettyconn;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelPipeline;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
@@ -20,7 +16,8 @@ public class server {
 
             serverBootstrap.group(bossGroup, workerGroup)
             .channel(NioServerSocketChannel.class)
-            .localAddress(8081)
+                    .childOption(ChannelOption.SO_KEEPALIVE, true)
+                    .localAddress(8081)
             .childHandler(new ChannelInitializer<Channel>() {
 
                 @Override
